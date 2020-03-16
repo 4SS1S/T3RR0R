@@ -1,0 +1,48 @@
+# Project: T3RR0R
+# Makefile created by Dev-C++ 5.0.0.9
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+RES      = ../obj/T3RR0R_private.res
+OBJ      = ../obj/T3RR0R.o ../obj/mouse.o ../obj/Keyboard.o ../obj/init.o ../obj/video.o ../obj/console32.o $(RES)
+LINKOBJ  = ../obj/T3RR0R.o ../obj/mouse.o ../obj/Keyboard.o ../obj/init.o ../obj/video.o ../obj/console32.o $(RES)
+LIBS     = -L"C:/Users/Aluno/AppData/Local/Temp/Rar$EXa0.665/Dev-Cpp/MinGW32/lib" -static-libstdc++ -static-libgcc  
+INCS     = -I"C:/Users/Aluno/AppData/Local/Temp/Rar$EXa0.665/Dev-Cpp/MinGW32/include" 
+CXXINCS  = -I"C:/Users/Aluno/AppData/Local/Temp/Rar$EXa0.665/Dev-Cpp/MinGW32/include" 
+BIN      = ../bin/T3RR0R.exe
+CXXFLAGS = $(CXXINCS)  
+CFLAGS   = $(INCS)  
+RM       = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before ../bin/T3RR0R.exe all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o "..\bin\T3RR0R.exe" $(LIBS)
+
+../obj/T3RR0R.o: T3RR0R.cpp
+	$(CPP) -c T3RR0R.cpp -o ../obj/T3RR0R.o $(CXXFLAGS)
+
+../obj/mouse.o: mouse.cpp
+	$(CPP) -c mouse.cpp -o ../obj/mouse.o $(CXXFLAGS)
+
+../obj/Keyboard.o: Keyboard.cpp
+	$(CPP) -c Keyboard.cpp -o ../obj/Keyboard.o $(CXXFLAGS)
+
+../obj/init.o: init.cpp
+	$(CPP) -c init.cpp -o ../obj/init.o $(CXXFLAGS)
+
+../obj/video.o: video.cpp
+	$(CPP) -c video.cpp -o ../obj/video.o $(CXXFLAGS)
+
+../obj/console32.o: console32.cpp
+	$(CPP) -c console32.cpp -o ../obj/console32.o $(CXXFLAGS)
+
+../obj/T3RR0R_private.res: T3RR0R_private.rc ../src/icon.rc 
+	$(WINDRES) -i T3RR0R_private.rc --input-format=rc -o ../obj/T3RR0R_private.res -O coff 
